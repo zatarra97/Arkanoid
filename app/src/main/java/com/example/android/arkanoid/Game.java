@@ -47,6 +47,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private int level;
     private boolean start;
     private boolean gameOver;
+    private boolean newRecord;
     private Context context;
 
     public Game(Context context, int lifes, int score) {
@@ -57,11 +58,12 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.context = context;
         this.lifes = lifes;
         this.score = score;
-        level = 0;
+        level = 1;
 
         // start a gameOver na zistenie ci hra stoji a ci je hráč neprehral
         start = false;
         gameOver = false;
+        newRecord = false;
 
         // vytvorí akcelerometer a SensorManager
         sManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
@@ -125,17 +127,28 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             canvas.drawBitmap(b.getBrick(), null, r, paint);
         }
 
-        // vykresli text
+        // Mostra testo vite, punteggio, livello
         paint.setColor(Color.WHITE);
         paint.setTextSize(50);
-        canvas.drawText("" + lifes, 400, 100, paint);
-        canvas.drawText("" + score, 700, 100, paint);
+        canvas.drawText("" + lifes, 240, 120, paint);
+        canvas.drawText("" + score, 520, 120, paint);
+        canvas.drawText("" + level, 820, 120, paint);
+
+        paint.setColor(Color.RED);
+        canvas.drawText("Vite" , 200, 50, paint);
+        canvas.drawText("Punti", 500, 50, paint);
+        canvas.drawText("Lvl", 800, 50, paint);
 
         // In caso di perdita appare la scritta "Game over!"
         if (gameOver) {
             paint.setColor(Color.RED);
             paint.setTextSize(100);
             canvas.drawText("Game over!", size.x / 4, size.y / 2, paint);
+
+            if(newRecord){
+                paint.setTextSize(70);
+                canvas.drawText("Nuovo record: " + score, size.x / 4, size.y / 2 + 100, paint);
+            }
         }
     }
 
@@ -157,8 +170,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         if (lifes == 1) {
             gameOver = true;
             start = false;
-            invalidate();
             checkScore(score);
+            invalidate();
         } else {
             lifes--;
             lopticka.setX(size.x / 2);
@@ -202,6 +215,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         if (score > primo){
             sp.edit().putString("primo", String.valueOf(score)).apply();
             Log.i("Punteggio", "Nuovo primo posto:" + String.valueOf(score));
+            newRecord = true;
         }else if (score > secondo){
             sp.edit().putString("secondo", String.valueOf(score)).apply();
             Log.i("Punteggio", "Nuovo secondo posto:" + String.valueOf(score));
