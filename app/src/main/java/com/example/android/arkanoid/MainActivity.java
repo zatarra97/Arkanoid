@@ -16,10 +16,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // nastavi orientaciu obrazovky
+        // imposta l'orientamento dello schermo
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        // vytvori novu hru
+        // crea un nuovo gioco
         game = new Game(this, 3, 0);
         setContentView(game);
 

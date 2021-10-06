@@ -1,6 +1,7 @@
 package com.example.android.arkanoid;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -50,7 +51,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         super(context);
         paint = new Paint();
 
-        // nastavi context, zivoty, skore a level
+        // Imposta context, vite, punteggi a livelli
         this.context = context;
         this.lifes = lifes;
         this.score = score;
@@ -128,7 +129,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         canvas.drawText("" + lifes, 400, 100, paint);
         canvas.drawText("" + score, 700, 100, paint);
 
-        // v pripade prehry vykresli "Game over!"
+        // In caso di perdita appare la scritta "Game over!"
         if (gameOver) {
             paint.setColor(Color.RED);
             paint.setTextSize(100);
@@ -136,7 +137,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         }
     }
 
-    // skontroluje či sa lopticka nedotkla okraju
+    // controlla che la palla non abbia toccato il bordo
     private void skontrolujOkraje() {
         if (lopticka.getX() + lopticka.getxRychlost() >= size.x - 60) {
             lopticka.zmenSmer("prava");
@@ -149,7 +150,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         }
     }
 
-    // skontroluje stav hry. či ma životy alebo či hra konči
+    // controlla lo stato del gioco. se le mie vite sono finite o se il gioco è finito
     private void skontrolujZivoty() {
         if (lifes == 1) {
             gameOver = true;
@@ -190,7 +191,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         sManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
     }
 
-    // zmena akcelerometera
+    // cambia accelerometro
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
@@ -208,7 +209,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
-    // sluzi na pozastavenie hry v pripade novej hry
+    // Cosa succede al touch dello schermo
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (gameOver == true && start == false) {
@@ -217,13 +218,14 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             resetLevel();
             gameOver = false;
 
+
         } else {
             start = true;
         }
         return false;
     }
 
-    // nastavi hru na zaciatok
+    // Imposta il gioco per iniziare
     private void resetLevel() {
         lopticka.setX(size.x / 2);
         lopticka.setY(size.y - 480);
