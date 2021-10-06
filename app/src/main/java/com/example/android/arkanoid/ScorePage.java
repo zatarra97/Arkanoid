@@ -16,9 +16,9 @@ public class ScorePage extends AppCompatActivity {
         SharedPreferences sp = this.getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
 
         //Salvare Shared preferences
-        //sp.edit().putString("primo", "10000").apply();
-        //sp.edit().putString("secondo", "9000").apply();
-        //sp.edit().putString("terzo", "8000").apply();
+        //sp.edit().putString("primo", "300").apply();
+        //sp.edit().putString("secondo", "200").apply();
+        //sp.edit().putString("terzo", "100").apply();
 
         //Leggere Shared preferences
         String primo = sp.getString("primo", "0");   //Se non dovesse esistere utilizza il secondo argomeno (stringa vuota)

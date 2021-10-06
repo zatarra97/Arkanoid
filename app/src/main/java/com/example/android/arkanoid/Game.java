@@ -2,6 +2,7 @@ package com.example.android.arkanoid;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,6 +14,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -156,6 +158,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             gameOver = true;
             start = false;
             invalidate();
+            checkScore(score);
         } else {
             lifes--;
             lopticka.setX(size.x / 2);
@@ -180,6 +183,31 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 }
             }
             lopticka.pohni();
+        }
+    }
+
+    //Controlla il punteggio per salvarlo nella top 3
+    public void checkScore(int score){
+        Log.i("Punteggio", "Partita finita, controllo punteggio " + String.valueOf(score));
+        SharedPreferences sp = context.getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
+
+        String sprimo = sp.getString("primo", "0");   //Se non dovesse esistere utilizza il secondo argomento (0)
+        String ssecondo = sp.getString("secondo", "0");
+        String sterzo = sp.getString("terzo", "0");
+        int primo = Integer.parseInt(sprimo);
+        int secondo = Integer.parseInt(ssecondo);
+        int terzo = Integer.parseInt(sterzo);
+
+        //Salva il punteggio
+        if (score > primo){
+            sp.edit().putString("primo", String.valueOf(score)).apply();
+            Log.i("Punteggio", "Nuovo primo posto:" + String.valueOf(score));
+        }else if (score > secondo){
+            sp.edit().putString("secondo", String.valueOf(score)).apply();
+            Log.i("Punteggio", "Nuovo secondo posto:" + String.valueOf(score));
+        }else if (score > terzo){
+            sp.edit().putString("terzo", String.valueOf(score)).apply();
+            Log.i("Punteggio", "Nuovo terzo posto:" + String.valueOf(score));
         }
     }
 
