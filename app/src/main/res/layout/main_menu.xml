@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:onClick="quitGame">
 
     <TextView
         android:id="@+id/textView"
@@ -64,6 +65,7 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="120dp"
+        android:onClick="quitGame"
         android:text="@string/quit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"

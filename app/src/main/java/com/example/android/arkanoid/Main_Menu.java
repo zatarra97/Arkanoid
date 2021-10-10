@@ -1,6 +1,7 @@
 package com.example.android.arkanoid;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -30,5 +31,13 @@ public class Main_Menu extends AppCompatActivity {
     public void openScorePage(View view) {
         Intent intent1 = new Intent (this, ScorePage.class);
         startActivity(intent1);
+    }
+
+    public void quitGame(View view){
+        if(Build.VERSION.SDK_INT>=16 && Build.VERSION.SDK_INT<21){
+            finishAffinity();
+        } else if(Build.VERSION.SDK_INT>=21){
+            finishAndRemoveTask();
+        }
     }
 }
