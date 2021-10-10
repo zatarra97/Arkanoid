@@ -19,6 +19,7 @@ public class Brick extends View {
     }
 
     // priradi random obrazok tehlicke
+    //assegna una immagine casuale al mattone
     private void skin() {
         int a = (int) (Math.random() * 8);
         switch (a) {

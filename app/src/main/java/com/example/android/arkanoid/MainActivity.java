@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(game);
 
         // vytvori handler a thread
+        //crea un gestore di thread
         VytvorHandler();
         myThread = new UpdateThread(updateHandler);
         myThread.start();
