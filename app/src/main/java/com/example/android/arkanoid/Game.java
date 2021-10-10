@@ -91,6 +91,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     // naplni zoznam tehlickami
     //riempi la lista di mattoncini
+    //vygeneruj Bricks = generare mattoncini
     private void vygenerujBricks(Context context) {
         for (int i = 3; i < 7; i++) {
             for (int j = 1; j < 6; j++) {
@@ -101,6 +102,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     // nastavi pozadie
     //imposta lo sfondo
+    //nacitaj Pozadie = leggi lo sfondo
     private void nacitajPozadie(Context context) {
         pozadie = Bitmap.createBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.pozadie_score));
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -163,6 +165,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     }
 
     // controlla che la palla non abbia toccato il bordo
+    //lopticka = sfera
     private void skontrolujOkraje() {
         if (lopticka.getX() + lopticka.getxRychlost() >= size.x - 60) {
             lopticka.zmenSmer("prava");
@@ -236,10 +239,12 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         }
     }
 
+    //zastav Snimanie = smetti di sparare
     public void zastavSnimanie() {
         sManager.unregisterListener(this);
     }
 
+    //spustiSnimanie = eseguire scansione
     public void spustiSnimanie() {
         sManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
     }
@@ -288,6 +293,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     }
 
     // zisti ci hrac vyhral alebo nie
+    //scopre se il giocatore ha vinto o no
+    //vyhra = vincita
     private void vyhra() {
         if (zoznam.isEmpty()) {
             ++level;
