@@ -34,10 +34,7 @@ public class Main_Menu extends AppCompatActivity {
     }
 
     public void quitGame(View view){
-        if(Build.VERSION.SDK_INT>=16 && Build.VERSION.SDK_INT<21){
-            finishAffinity();
-        } else if(Build.VERSION.SDK_INT>=21){
-            finishAndRemoveTask();
-        }
+        Intent toExit = new Intent(this, ExitActivity.class);
+        startActivity(toExit);
     }
 }
