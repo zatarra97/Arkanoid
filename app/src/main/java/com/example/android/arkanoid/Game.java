@@ -61,21 +61,25 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         level = 1;
 
         // start a gameOver na zistenie ci hra stoji a ci je hráč neprehral
+        //avvia un gameover per scoprire se il gioco è in piedi e se il giocatore non l'ha perso
         start = false;
         gameOver = false;
         newRecord = false;
 
         // vytvorí akcelerometer a SensorManager
+        //crea un accelerometro e un SensorManager
         sManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         nacitajPozadie(context);
 
         // vytvori bitmap pre lopticku a pádlo
+        //crea una bitmap per la palla e la pagaia
         redBall = BitmapFactory.decodeResource(getResources(), R.drawable.redball);
         paddle_p = BitmapFactory.decodeResource(getResources(), R.drawable.paddle);
 
         // vytvorí novú lopticku, pádlo, a zoznam tehliciek
+        //crea una nuova palla, pagaia e un elenco di mattoncini
         lopticka = new Ball(size.x / 2, size.y - 480);
         paddle = new Paddle(size.x / 2, size.y - 400);
         zoznam = new ArrayList<Brick>();
@@ -86,6 +90,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     }
 
     // naplni zoznam tehlickami
+    //riempi la lista di mattoncini
     private void vygenerujBricks(Context context) {
         for (int i = 3; i < 7; i++) {
             for (int j = 1; j < 6; j++) {
@@ -95,6 +100,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     }
 
     // nastavi pozadie
+    //imposta lo sfondo
     private void nacitajPozadie(Context context) {
         pozadie = Bitmap.createBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.pozadie_score));
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -105,21 +111,25 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     protected void onDraw(Canvas canvas) {
         // vytvori pozadie iba raz
+        //crea lo sfondo solo una volta
         if (roztiahnuty == null) {
             roztiahnuty = Bitmap.createScaledBitmap(pozadie, size.x, size.y, false);
         }
         canvas.drawBitmap(roztiahnuty, 0, 0, paint);
 
         // vykresli lopticku
+        //disegna una palla
         paint.setColor(Color.RED);
         canvas.drawBitmap(redBall, lopticka.getX(), lopticka.getY(), paint);
 
         // vykresli padlo
+        //disegnato caduto
         paint.setColor(Color.WHITE);
         r = new RectF(paddle.getX(), paddle.getY(), paddle.getX() + 200, paddle.getY() + 40);
         canvas.drawBitmap(paddle_p, null, r, paint);
 
         // vykresli tehlicky
+        //disegnare mattoni
         paint.setColor(Color.GREEN);
         for (int i = 0; i < zoznam.size(); i++) {
             Brick b = zoznam.get(i);
@@ -183,6 +193,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     }
 
     // kazdy krok kontroluje ci nedoslo ku kolizii, k prehre alebo k vyhre atd
+    //ogni passaggio controlla se c'è una collisione, una perdita o una vittoria, ecc
     public void update() {
         if (start) {
             vyhra();
