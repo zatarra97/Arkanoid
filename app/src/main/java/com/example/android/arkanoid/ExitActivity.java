@@ -21,12 +21,16 @@ public class ExitActivity extends AppCompatActivity {
 
     }
 
+
+
     //metodo per uscire dall'applicazione
     public void onClickExit(View view) {
 
         if(view.getId() == R.id.btnSi){
-            moveTaskToBack(true);
-            finish();
+            //moveTaskToBack(true);
+            //finish();
+            finishAffinity();;
+            System.exit(0);
 
         }else if(view.getId() == R.id.btnNo){
             Intent toMainMenu = new Intent(this,Main_Menu.class);
@@ -34,4 +38,6 @@ public class ExitActivity extends AppCompatActivity {
         }
 
     }
+
+
 }

@@ -21,7 +21,15 @@ public class Main_Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
+        Main_Menu obj = new Main_Menu();
+        //obj.onBackPressed();
+
     }
+    // Alternative variant for API 5 and higher
+    @Override
+        public void onBackPressed(){
+
+        }
 
     public void startGame(View view) {
         Intent intent1 = new Intent (this, MainActivity.class);

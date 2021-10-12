@@ -34,4 +34,9 @@ public class ScorePage extends AppCompatActivity {
         tw2.setText(secondo);
         tw3.setText(terzo);
     }
+
+    @Override
+    public void onBackPressed(){
+
+    }
 }
