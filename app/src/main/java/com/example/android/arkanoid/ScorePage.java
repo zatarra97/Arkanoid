@@ -1,6 +1,7 @@
 package com.example.android.arkanoid;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,8 +36,10 @@ public class ScorePage extends AppCompatActivity {
         tw3.setText(terzo);
     }
 
+    //metodo per governare il tasto back del sistema operativo
     @Override
     public void onBackPressed(){
-
+        Intent toMainMenu = new Intent(this, Main_Menu.class);
+        startActivity(toMainMenu);
     }
 }

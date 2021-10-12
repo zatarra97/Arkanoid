@@ -1,5 +1,6 @@
 package com.example.android.arkanoid;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.os.Message;
@@ -30,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
         myThread.start();
     }
 
+    //metodo per governare il tasto back del sistema operativo
+    @Override
+    public void onBackPressed(){
+        Intent toMainMenu = new Intent(this, Main_Menu.class);
+        startActivity(toMainMenu);
+    }
+
     private void VytvorHandler() {
         updateHandler = new Handler() {
             public void handleMessage(Message msg) {
@@ -39,12 +47,13 @@ public class MainActivity extends AppCompatActivity {
             }
         };
     }
-
+    //zastavSnimanie = smetti si sparare
     protected void onPause() {
         super.onPause();
         game.zastavSnimanie();
     }
 
+    //spusti Snimanie = Esegui scansione
     protected void onResume() {
         super.onResume();
         game.spustiSnimanie();
