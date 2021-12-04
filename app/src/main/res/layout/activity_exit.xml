@@ -11,14 +11,16 @@
         android:id="@+id/btnNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="52dp"
         android:layout_marginTop="102dp"
         android:layout_marginBottom="424dp"
         android:onClick="onClickExit"
         android:text="No"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvExit" />
+        app:layout_constraintRight_toLeftOf="@id/btnSi"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/tvExit"
+        app:layout_constraintVertical_bias="0.215" />
 
     <Button
         android:id="@+id/btnSi"
@@ -29,30 +31,53 @@
         android:onClick="onClickExit"
         android:text="Si"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="0.633"
         app:layout_constraintStart_toEndOf="@+id/btnNo"
-        app:layout_constraintTop_toBottomOf="@+id/tvExit" />
+        app:layout_constraintTop_toBottomOf="@+id/tvExit"
+        app:layout_constraintVertical_bias="0.207" />
 
     <TextView
         android:id="@+id/tvExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vuoi davvero uscire?"
+        android:layout_marginBottom="376dp"
+        android:text="@string/vuoi_davvero_uscire"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintTop_toBottomOf="@id/imageSad" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageSad"
         android:layout_width="135dp"
         android:layout_height="118dp"
-        app:srcCompat="@drawable/sad"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="70dp" />
+        app:layout_constraintBottom_toTopOf="@id/tvExit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline7"
+        app:srcCompat="@drawable/sad" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
 </android.support.constraint.ConstraintLayout>
