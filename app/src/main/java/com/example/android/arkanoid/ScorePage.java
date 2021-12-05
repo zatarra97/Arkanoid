@@ -3,9 +3,12 @@ package com.example.android.arkanoid;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ScorePage extends AppCompatActivity {
 
@@ -22,9 +25,9 @@ public class ScorePage extends AppCompatActivity {
         //sp.edit().putString("terzo", "100").apply();
 
         //Leggere Shared preferences
-        String primo = sp.getString("primo", "0");   //Se non dovesse esistere utilizza il secondo argomeno (stringa vuota)
-        String secondo = sp.getString("secondo", "0");
-        String terzo = sp.getString("terzo", "0");
+        final String primo = sp.getString("primo", "0");   //Se non dovesse esistere utilizza il secondo argomeno (stringa vuota)
+        final String secondo = sp.getString("secondo", "0");
+        final String terzo = sp.getString("terzo", "0");
 
         TextView tw1 = (TextView)findViewById(R.id.textViewScore1);
         TextView tw2 = (TextView)findViewById(R.id.textViewScore2);
@@ -34,6 +37,24 @@ public class ScorePage extends AppCompatActivity {
         tw1.setText(primo);
         tw2.setText(secondo);
         tw3.setText(terzo);
+
+        FloatingActionButton shareScoreButton = (FloatingActionButton) findViewById(R.id.shareScoreButton); //FIND THE BUTTON
+        shareScoreButton.setOnClickListener(new View.OnClickListener() { //SET ON CLICK LISTENER
+            @Override
+            public void onClick(View v) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                //shareIntent.setPackage("com.whatsapp");
+                String topScores = "1. ".concat(primo).concat("\n2. ").concat(secondo).concat("\n3. ").concat(terzo);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "Hey! Check out my last Arkanoid top scores:\n" + topScores);
+                try {
+                    //startActivity(shareIntent);
+                    startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.bestScores)));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText( ScorePage.this, "Whatsapp have not been installed.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     //metodo per governare il tasto back del sistema operativo
@@ -42,4 +63,6 @@ public class ScorePage extends AppCompatActivity {
         Intent toMainMenu = new Intent(this, Main_Menu.class);
         startActivity(toMainMenu);
     }
+
+
 }
