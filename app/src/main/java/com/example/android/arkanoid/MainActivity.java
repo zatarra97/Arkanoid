@@ -50,13 +50,13 @@ public class MainActivity extends AppCompatActivity {
     //zastavSnimanie = smetti si sparare
     protected void onPause() {
         super.onPause();
-        game.zastavSnimanie();
+        game.smettiDiSparare();
     }
 
     //spusti Snimanie = Esegui scansione
     protected void onResume() {
         super.onResume();
-        game.spustiSnimanie();
+        game.iniziaSparare();
     }
 
 }

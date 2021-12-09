@@ -10,12 +10,22 @@ public class Brick extends View {
     private Bitmap brick;
     private float x;
     private float y;
+    private String power;
+    private boolean isDestroyed = false;
 
     public Brick(Context context, float x, float y) {
         super(context);
         this.x = x;
         this.y = y;
+        this.power = "";
         skin();
+    }
+    public Brick(Context context, float x, float y, String power) {
+        super(context);
+        this.x = x;
+        this.y = y;
+        this.power = power;
+        skinSpecial(power);
     }
 
     // priradi random obrazok tehlicke
@@ -50,10 +60,33 @@ public class Brick extends View {
         }
     }
 
+    private void skinSpecial(String power) {
+        switch (power) {
+            case "bomb":
+                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_bomb);
+                break;
+            case "lifeup":
+                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_lifeup);
+                break;
+            case "speedup":
+                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_speedup);
+                break;
+        }
+
+    }
+
     @Override
     public float getX() {
         return x;
     }
+
+    public boolean isBomb() {
+        return power.equals("bomb");
+    }
+
+    public boolean isLifeUp() { return power.equals("lifeup"); }
+
+    public boolean isSpeedUp() { return power.equals("speedup"); }
 
     @Override
     public void setX(float x) {
@@ -72,5 +105,18 @@ public class Brick extends View {
 
     public Bitmap getBrick() {
         return brick;
+    }
+
+    public boolean isDestroyed() {
+        return isDestroyed;
+    }
+
+    public void setDestroyed(boolean destroyed) {
+        isDestroyed = destroyed;
+    }
+
+    public void distruggi() {
+        setDestroyed(true);
+        brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_transparent);
     }
 }
