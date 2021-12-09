@@ -130,4 +130,16 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.85" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/shareScoreButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="36dp"
+        android:clickable="true"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_share" />
+
 </android.support.constraint.ConstraintLayout>
