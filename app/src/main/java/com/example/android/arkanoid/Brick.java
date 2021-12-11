@@ -113,6 +113,11 @@ public class Brick extends View {
                 brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_black);
                 skin = "black";
                 break;
+            case "trasparent":
+                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_transparent);
+                skin = "trasparent";
+                isDestroyed = true;
+                break;
         }
     }
 
