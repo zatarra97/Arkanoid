@@ -10,6 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/aclonica"
         android:text="@string/app_name"
@@ -39,10 +40,9 @@
         android:id="@+id/buttonScores"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
         android:onClick="openScorePage"
         android:text="@string/scores"
-        app:layout_constraintBottom_toTopOf="@+id/buttonQuit"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -61,18 +61,27 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonNewGame" />
 
     <Button
-        android:id="@+id/buttonQuit"
+        android:id="@+id/buttonLevelEditor"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:onClick="quitGame"
-        android:text="@string/quit"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
+        android:onClick="openLevelEditor"
+        android:text="@string/level_editor"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/buttonScores"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonScores" />
+
+    <Button
+        android:id="@+id/buttonQuit"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="quitGame"
+        android:text="@string/quit"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLevelEditor" />
 
     <Button
         android:id="@+id/buttonNewGame"

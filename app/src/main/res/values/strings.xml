@@ -9,6 +9,7 @@
 
     <string name="bestScores">Punteggi migliori</string>
 
+    <string name="level_editor">Editor Livelli</string>
 
     <string name="title_activity_main_menu">Main_Menu</string>
     <!-- Strings used for fragments for navigation -->
@@ -20,7 +21,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <string name ="title_splash_screen">Arkan App</string>
-    <string name = "welcome"> Benvenuti in </string>
+    <string name="title_splash_screen">Arkan App</string>
+    <string name="welcome"> Benvenuti in </string>
     <string name="vuoi_davvero_uscire">Vuoi davvero uscire?</string>
 </resources>

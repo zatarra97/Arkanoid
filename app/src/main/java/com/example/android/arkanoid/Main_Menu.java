@@ -41,6 +41,11 @@ public class Main_Menu extends AppCompatActivity {
         startActivity(intent1);
     }
 
+    public void openLevelEditor(View view){
+        Intent intent1 = new Intent(this, LevelEditor.class);
+        startActivity(intent1);
+    }
+
     public void quitGame(View view){
         Intent toExit = new Intent(this, ExitActivity.class);
         startActivity(toExit);
