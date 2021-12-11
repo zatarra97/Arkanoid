@@ -54,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/loadGame"
+        android:onClick="loadCustomLevel"
         app:layout_constraintBottom_toTopOf="@+id/buttonSettings"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.5"

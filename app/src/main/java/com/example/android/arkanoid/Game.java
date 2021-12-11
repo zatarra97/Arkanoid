@@ -1,7 +1,6 @@
 package com.example.android.arkanoid;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -50,7 +49,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private boolean newRecord;
     private Context context;
 
-    public Game(Context context, int lifes, int score) {
+    public Game(Context context, int lifes, int score, String custom_level) {
         super(context);
         paint = new Paint();
 
@@ -84,7 +83,11 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         paddle = new Paddle(size.x / 2, size.y - 400);
         mattoncini = new ArrayList<Brick>();
 
-        generaMattoncini(context);
+        if (custom_level != null && !custom_level.isEmpty()) {
+            generaMattonciniCustom(context, custom_level);
+        } else {
+            generaMattoncini(context);
+        }
         this.setOnTouchListener(this);
 
     }
@@ -92,6 +95,18 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     // naplni zoznam tehlickami
     //riempi la lista di mattoncini
     //vygeneruj Bricks = generare mattoncini
+    private void generaMattonciniCustom(Context context, String custom_level) {
+        String[] custom_bricks = custom_level.split(",");
+        int a = 0;
+        for (int i = 3; i < 8; i++) {
+            for (int j = 1; j < 6; j++) {
+                String b = custom_bricks[a];
+                mattoncini.add(new Brick(context, j * 150, i * 100, b));
+                a++;
+            }
+        }
+    }
+
     private void generaMattoncini(Context context) {
         boolean bomb = false;
         boolean lifeup = false;
