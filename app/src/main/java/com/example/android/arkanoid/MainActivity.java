@@ -19,7 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
         // imposta l'orientamento dello schermo
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        String custom_level = getIntent().getExtras().getString("custom_level");
+        String custom_level = "";
+        if (getIntent().getExtras() != null) {
+            custom_level = getIntent().getExtras().getString("custom_level");
+        }
         // crea un nuovo gioco
         game = new Game(this, 3, 0, custom_level);
         setContentView(game);
