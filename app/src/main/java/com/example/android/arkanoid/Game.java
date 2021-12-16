@@ -23,6 +23,9 @@ import java.util.ArrayList;
 
 public class Game extends View implements SensorEventListener, View.OnTouchListener {
 
+    //Gestione Suoni mattoncini
+    private SoundManager sm;
+
     private Bitmap sfondo;
     private Bitmap redBall;
     private Bitmap allungato;
@@ -58,6 +61,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.lifes = lifes;
         this.score = score;
         level = 1;
+        sm.init(context); //SoundManager
 
         // start a gameOver na zistenie ci hra stoji a ci je hráč neprehral
         //avvia un gameover per scoprire se il gioco è in piedi e se il giocatore non l'ha perso
@@ -250,10 +254,16 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                     if(b.isBomb()){
                         //logica da implementare se la palla è nera tipo scoppiano anche i mattonci vicino
                         distruggiBomba(i);
+                        //riproduzione suono mattoncino bomba
+                        sm.playBomb();
                     } else if (b.isLifeUp()) {
                         this.lifes += 1;
                     } else if (b.isSpeedUp()) {
                         palla.increaseSpeed(level+5);
+                        sm.playPup();
+                    }else{
+                        //riproduzione suono mattoncino generico
+                        sm.playHit();
                     }
                     b.distruggi();
                     score = score + 80;
