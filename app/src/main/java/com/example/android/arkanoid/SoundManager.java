@@ -7,9 +7,11 @@ import android.provider.MediaStore;
 
 public class SoundManager {
 
-    private static SoundPool soundPoolHit;
-    private static SoundPool soundPoolBomb;
-    private static SoundPool soundPoolPUp;
+    private static final int NR_OF_SIMULTANEOUS_SOUND = 3;
+    //private static SoundPool soundPoolHit;
+    //private static SoundPool soundPoolBomb;
+    //private static SoundPool soundPoolPUp;
+    private static SoundPool soundBrick;
     private static int hit_mattoncino;
     private static int bomb_mattoncino;
     private static int powerUp_mattoncino;
@@ -17,28 +19,30 @@ public class SoundManager {
     //Carichiamo i file audio
     public static void init(Context context){
 
-        soundPoolHit= new SoundPool(1, AudioManager.STREAM_MUSIC, 100);
-        hit_mattoncino = soundPoolHit.load(context,R.raw.hit_mattoncino, 0);
+        //oggetto SoundPool
+        soundBrick = new SoundPool(NR_OF_SIMULTANEOUS_SOUND, AudioManager.STREAM_MUSIC, 100);
 
-        soundPoolBomb = new SoundPool(1,AudioManager.STREAM_MUSIC,100);
-        bomb_mattoncino = soundPoolBomb.load(context ,R.raw.mattoncino_bomba, 0);
+        hit_mattoncino = soundBrick.load(context,R.raw.hit_mattoncino, 1);
 
-        soundPoolPUp = new SoundPool(1, AudioManager.STREAM_MUSIC,100);
-        powerUp_mattoncino = soundPoolPUp.load(context, R.raw.power_up,0);
+        //soundPoolBomb = new SoundPool(1,AudioManager.STREAM_MUSIC,100);
+        bomb_mattoncino = soundBrick.load(context ,R.raw.mattoncino_bomba, 1);
+
+        //soundPoolPUp = new SoundPool(1, AudioManager.STREAM_MUSIC,100);
+        powerUp_mattoncino = soundBrick.load(context, R.raw.power_up,1);
 
     }
 
     //Eseguiamo i file audio
     public static void playHit(){
-        soundPoolHit.play(hit_mattoncino, 1f, 1f, 1, 0, 1f);
+        soundBrick.play(hit_mattoncino, 1f, 1f, 1, 0, 1f);
     }
 
     public static void playBomb(){
-        soundPoolBomb.play(bomb_mattoncino, 1f, 1f, 1, 0, 1f);
+        soundBrick.play(bomb_mattoncino, 1f, 1f, 1, 0, 1f);
     }
 
     public static void playPup(){
-        soundPoolPUp.play(powerUp_mattoncino, 1f, 1f, 1, 0, 1f);
+        soundBrick.play(powerUp_mattoncino, 1f, 1f, 1, 0, 1f);
     }
 }
 
