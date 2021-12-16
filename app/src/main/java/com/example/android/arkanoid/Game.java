@@ -258,8 +258,11 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                         sm.playBomb();
                     } else if (b.isLifeUp()) {
                         this.lifes += 1;
+                        //riproduzione suono powerUp
+                        sm.playPup();
                     } else if (b.isSpeedUp()) {
                         palla.increaseSpeed(level+5);
+                        //riproduzione suono powerUp
                         sm.playPup();
                     }else{
                         //riproduzione suono mattoncino generico
