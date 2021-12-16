@@ -17,14 +17,14 @@ public class SoundManager {
     //Carichiamo i file audio
     public static void init(Context context){
 
-        soundPoolHit=new SoundPool(1, AudioManager.STREAM_MUSIC, 100);
+        soundPoolHit= new SoundPool(1, AudioManager.STREAM_MUSIC, 100);
         hit_mattoncino = soundPoolHit.load(context,R.raw.hit_mattoncino, 0);
 
         soundPoolBomb = new SoundPool(1,AudioManager.STREAM_MUSIC,100);
-        bomb_mattoncino = soundPoolBomb.load(context ,R.raw.mattoncino_bomba, 100);
+        bomb_mattoncino = soundPoolBomb.load(context ,R.raw.mattoncino_bomba, 0);
 
         soundPoolPUp = new SoundPool(1, AudioManager.STREAM_MUSIC,100);
-        powerUp_mattoncino = soundPoolPUp.load(context, R.raw.power_up,100);
+        powerUp_mattoncino = soundPoolPUp.load(context, R.raw.power_up,0);
 
     }
 
