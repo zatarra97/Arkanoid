@@ -1,16 +1,17 @@
 package com.example.android.arkanoid;
 
 import android.content.Context;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.os.Build;
 import android.provider.MediaStore;
 
 public class SoundManager {
 
+    //costante per numero di suoni simultanei
     private static final int NR_OF_SIMULTANEOUS_SOUND = 3;
-    //private static SoundPool soundPoolHit;
-    //private static SoundPool soundPoolBomb;
-    //private static SoundPool soundPoolPUp;
+    //variabili membro di SoudPool
     private static SoundPool soundBrick;
     private static int hit_mattoncino;
     private static int bomb_mattoncino;
@@ -19,15 +20,20 @@ public class SoundManager {
     //Carichiamo i file audio
     public static void init(Context context){
 
-        //oggetto SoundPool
-        soundBrick = new SoundPool(NR_OF_SIMULTANEOUS_SOUND, AudioManager.STREAM_MUSIC, 100);
+        //Gestione costruttore SoundPool che è deprecato dalla versione API 21
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            AudioAttributes audioAttrib = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_GAME)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+            soundBrick = new SoundPool.Builder().setAudioAttributes(audioAttrib).setMaxStreams(NR_OF_SIMULTANEOUS_SOUND).build();
+        }else{
+            //oggetto SoundPool per altre versioni
+            soundBrick = new SoundPool(NR_OF_SIMULTANEOUS_SOUND, AudioManager.STREAM_MUSIC, 0);
+        }
 
         hit_mattoncino = soundBrick.load(context,R.raw.hit_mattoncino, 1);
-
-        //soundPoolBomb = new SoundPool(1,AudioManager.STREAM_MUSIC,100);
         bomb_mattoncino = soundBrick.load(context ,R.raw.mattoncino_bomba, 1);
-
-        //soundPoolPUp = new SoundPool(1, AudioManager.STREAM_MUSIC,100);
         powerUp_mattoncino = soundBrick.load(context, R.raw.power_up,1);
 
     }
