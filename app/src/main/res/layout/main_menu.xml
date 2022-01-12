@@ -8,7 +8,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="400dp"
         android:background="@drawable/ic_wave" />
     <TextView
         android:id="@+id/textView"
@@ -97,10 +97,11 @@
         android:id="@+id/buttonNewGame"
         android:layout_width="240dp"
         android:layout_height="50dp"
+        android:layout_marginTop="23dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/round_btn"
         android:onClick="startGame"
         android:text="@string/newGame"
-        android:background="@drawable/round_btn"
         app:layout_constraintBottom_toTopOf="@+id/buttonLoadGame"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.5"
