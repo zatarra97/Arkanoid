@@ -1,14 +1,25 @@
 package com.example.android.arkanoid;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ScorePage extends AppCompatActivity {
 
@@ -32,6 +43,15 @@ public class ScorePage extends AppCompatActivity {
         tw1.setText(primo);
         tw2.setText(secondo);
         tw3.setText(terzo);
+
+        Button buttonMatchHistory = (Button)findViewById(R.id.buttonMatchHistory);
+        buttonMatchHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
+
 
         FloatingActionButton shareScoreButton = (FloatingActionButton) findViewById(R.id.shareScoreButton); //FIND THE BUTTON
         shareScoreButton.setOnClickListener(new View.OnClickListener() { //SET ON CLICK LISTENER
@@ -59,5 +79,41 @@ public class ScorePage extends AppCompatActivity {
         startActivity(toMainMenu);
     }
 
+    public void openDialog(){
+        ArrayList<String> matches = readMatchHistoryFile();
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setSingleChoiceItems(matches.toArray(new String[matches.size()]), -1, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int selectedItem) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public ArrayList<String> readMatchHistoryFile(){
+        ArrayList<String> results = new ArrayList<String>();
+        String state = Environment.getExternalStorageState();
+
+        if (!Environment.MEDIA_MOUNTED.equals(state)) {
+            // If it isn't mounted - we can't read from it.
+            return results;
+        }
+
+        try {
+            Scanner scanner = new Scanner(new File(this.getExternalFilesDir(null), "partite.txt")); //.useDelimiter("\\Z");
+            String s = "";
+            while (scanner.hasNext()) {
+                s = scanner.nextLine().toString();
+                results.add(s.split(";")[0]);
+            }
+            scanner.close();
+        }
+        catch (IOException e) {
+            // You'll need to add proper error handling here
+            Log.i("FILE", "error reading file:" + e.toString());
+        }
+        return results;
+    }
 }
