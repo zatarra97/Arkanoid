@@ -57,15 +57,17 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private boolean gameOver;
     private boolean newRecord;
     private Context context;
+    private int controller;
 
-    public Game(Context context, int lifes, int score, String custom_level) {
+    public Game(Context context, int lifes, int score, String custom_level, int controller) {
         super(context);
         paint = new Paint();
 
-        // Imposta context, vite, punteggi a livelli
+        // Imposta context, vite, punteggi, livelli e controller
         this.context = context;
         this.lifes = lifes;
         this.score = score;
+        this.controller = controller;
         level = 1;
         sm.init(context); //SoundManager
 
@@ -78,8 +80,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
         // vytvorí akcelerometer a SensorManager
         //crea un accelerometro e un SensorManager
-        sManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        if(controller == 1){
+            sManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+            accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        }
 
         leggiSfondo(context);
 
@@ -91,7 +95,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         // vytvorí novú lopticku, pádlo, a zoznam tehliciek
         //crea una nuova palla, pagaia e un elenco di mattoncini
         palla = new Ball(size.x / 2, size.y - 480);
-        paddle = new Paddle(size.x / 2, size.y - 400);
+        paddle = new Paddle(size.x / 2 - 100, size.y - 400);
         mattoncini = new ArrayList<Brick>();
 
         if (custom_level != null && !custom_level.isEmpty()) {
@@ -202,6 +206,16 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         canvas.drawText("Vite" , 200, 50, paint);
         canvas.drawText("Punti", 500, 50, paint);
         canvas.drawText("Lvl", 800, 50, paint);
+
+        if (controller == 0) {
+            Bitmap dxMap =  BitmapFactory.decodeResource(getResources(), R.drawable.arrow_dx);
+            r = new RectF(size.x-300f,  size.y-150f, size.x-150f,size.y-300f);
+            canvas.drawBitmap(dxMap, null, r, paint);
+
+            Bitmap sxMap =  BitmapFactory.decodeResource(getResources(), R.drawable.arrow_sx);
+            r = new RectF(150f,  size.y-150f, 300f,size.y-300f);
+            canvas.drawBitmap(sxMap, null, r, paint);
+        }
 
         // In caso di perdita appare la scritta "Game over!"
         if (gameOver) {
@@ -386,12 +400,16 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     //zastav Snimanie = smetti di sparare
     public void smettiDiSparare() {
-        sManager.unregisterListener(this);
+        if(sManager != null) {
+            sManager.unregisterListener(this);
+        }
     }
 
     //spustiSnimanie = eseguire scansione
     public void iniziaSparare() {
-        sManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
+        if(sManager != null) {
+            sManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
+        }
     }
 
     // cambia accelerometro
@@ -424,6 +442,20 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             if (playing == false) {
                 startTime = System.nanoTime();
                 playing = true;
+            } else {
+                if (controller == 0) {
+                    if (event.getX() > size.x / 2) {
+                        paddle.setX(paddle.getX() + 100);
+                        if (paddle.getX() > size.x - 200) {
+                            paddle.setX(size.x - 200);
+                        }
+                    } else {
+                        paddle.setX(paddle.getX() - 100);
+                        if (paddle.getX() < 0) {
+                            paddle.setX(0);
+                        }
+                    }
+                }
             }
             start = true;
         }
