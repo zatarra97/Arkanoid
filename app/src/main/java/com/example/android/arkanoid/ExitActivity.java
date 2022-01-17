@@ -28,11 +28,12 @@ public class ExitActivity extends AppCompatActivity {
             moveTaskToBack(true);
             finish();
             //finishAffinity();;
-            //System.exit(0);
+            System.exit(0);
 
         }else if(view.getId() == R.id.btnNo){
             Intent toMainMenu = new Intent(this,Main_Menu.class);
             startActivity(toMainMenu);
+            finish();
         }
 
     }

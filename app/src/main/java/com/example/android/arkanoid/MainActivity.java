@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -43,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed(){
         Intent toMainMenu = new Intent(this, Main_Menu.class);
         startActivity(toMainMenu);
+        finish();
     }
+
 
     private void VytvorHandler() {
         updateHandler = new Handler() {

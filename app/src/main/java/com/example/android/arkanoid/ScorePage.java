@@ -1,11 +1,14 @@
 package com.example.android.arkanoid;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +20,10 @@ public class ScorePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_page);
 
+        //per far comparire la freccia in alto a sinistra
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //per la memorizzazione locale
         SharedPreferences sp = this.getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
 
         //Leggere Shared preferences
@@ -57,6 +64,25 @@ public class ScorePage extends AppCompatActivity {
     public void onBackPressed(){
         Intent toMainMenu = new Intent(this, Main_Menu.class);
         startActivity(toMainMenu);
+        finish();
+    }
+
+    //viene chiamato quando si preme il tasto indietro in altro a sinistra
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent toMainMenu = new Intent(this, Main_Menu.class);
+                startActivity(toMainMenu);
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 
 

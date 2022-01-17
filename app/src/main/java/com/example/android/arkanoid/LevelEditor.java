@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -27,6 +29,10 @@ public class LevelEditor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //per far comparire la freccia in alto a sinistra
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final SharedPreferences sp = this.getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
         setContentView(R.layout.activity_level_editor);
 
@@ -126,9 +132,29 @@ public class LevelEditor extends AppCompatActivity {
         imageButton.setTag(tag);
     }
 
+    //viene chiamato quando si preme il tasto indietro in altro a sinistra
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent toMainMenu = new Intent(this, Main_Menu.class);
+                startActivity(toMainMenu);
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+
+    //tornare indietro al menu principale tramite il tasto indietro del sistema
     @Override
     public void onBackPressed(){
         Intent toMainMenu = new Intent(this, Main_Menu.class);
         startActivity(toMainMenu);
+        finish();
     }
 }
