@@ -26,7 +26,7 @@ public class Main_Menu extends AppCompatActivity {
         Main_Menu obj = new Main_Menu();
 
     }
-    // Alternative variant for API 5 and higher
+
     @Override
     public void onBackPressed(){
 

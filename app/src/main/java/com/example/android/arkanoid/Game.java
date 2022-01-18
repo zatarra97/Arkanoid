@@ -13,41 +13,43 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Game extends View implements SensorEventListener, View.OnTouchListener {
 
     //Gestione Suoni mattoncini
     private SoundManager sm;
-
     private Bitmap sfondo;
     private Bitmap redBall;
     private Bitmap allungato;
     private Bitmap paddle_p;
-
     private Display display;
     private Point size;
     private Paint paint;
-
     private Ball palla;
     private ArrayList<Brick> mattoncini;
     private Paddle paddle;
-
     private RectF r;
-
     private SensorManager sManager;
     private Sensor accelerometer;
-
     private int lifes;
     private int score;
     private int level;
     private boolean start;
+    private boolean playing;
+    private long startTime;
+    private long endTime;
     private boolean gameOver;
     private boolean newRecord;
     private Context context;
@@ -68,6 +70,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         start = false;
         gameOver = false;
         newRecord = false;
+        playing = false;
 
         // vytvorí akcelerometer a SensorManager
         //crea un accelerometro e un SensorManager
@@ -227,9 +230,12 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private void controllaVite() {
         if (lifes == 1) {
             gameOver = true;
+            playing = false;
             start = false;
             checkScore(score);
             invalidate();
+            endTime = System.nanoTime();
+            salvaPartitaInFile();
         } else {
             lifes--;
             palla.setX(size.x / 2);
@@ -237,6 +243,46 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             palla.createSpeed();
             palla.increaseSpeed(level);
             start = false;
+        }
+    }
+
+    public void salvaPartitaInFile() {
+        // Elapsed Play Time
+        double elapsedTime = (Double.valueOf(String.valueOf(endTime - startTime)) * 0.000000001);
+        DecimalFormat df = new DecimalFormat("#####.##");
+        String formattedElapsedTime = df.format(elapsedTime);
+        Log.i("ElapsedTime", formattedElapsedTime);
+
+        // Date
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm,dd/MM/yyyy");
+        String currentTimeDate = sdf.format(new Date());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(formattedElapsedTime).append(",");
+        stringBuilder.append(level).append(",").append(score).append(",").append(currentTimeDate).append(";\n");
+        String textToWrite = stringBuilder.toString();
+
+        // Checking the availability state of the External Storage.
+        String state = Environment.getExternalStorageState();
+        if (!Environment.MEDIA_MOUNTED.equals(state)) {
+            //If it isn't mounted - we can't write into it.
+            return;
+        }
+
+        // Create a new file that points to the root directory, with the given name:
+        File file = new File(context.getExternalFilesDir(null), "partite.txt");
+
+        // This point and below is responsible for the write operation
+        FileOutputStream outputStream = null;
+        try {
+            file.createNewFile();
+            //second argument of FileOutputStream constructor indicates whether
+            //to append or create new file if one exists
+            outputStream = new FileOutputStream(file, true);
+            outputStream.write(textToWrite.getBytes());
+            outputStream.flush();
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -357,9 +403,11 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             lifes = 3;
             resetLevel();
             gameOver = false;
-
-
         } else {
+            if (playing == false) {
+                startTime = System.nanoTime();
+                playing = true;
+            }
             start = true;
         }
         return false;

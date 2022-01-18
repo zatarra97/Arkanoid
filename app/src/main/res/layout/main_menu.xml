@@ -1,128 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-    <View
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="@drawable/ic_wave"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/aclonica"
-        android:text="@string/app_name"
-        android:textColor="#fff"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNewGame"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578"
-        app:layout_constraintVertical_chainStyle="packed" />
+        android:layout_height="match_parent"
+        android:paddingBottom="40dp"
+        >
 
-    <Button
-        android:id="@+id/buttonSettings"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/settings"
-        android:background="@drawable/round_btn"
-        app:layout_constraintBottom_toTopOf="@+id/buttonScores"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLoadGame" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="@drawable/ic_wave"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonScores"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="openScorePage"
-        android:text="@string/scores"
-        android:background="@drawable/round_btn"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/aclonica"
+            android:text="@string/app_name"
+            android:textColor="#fff"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonNewGame"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.578"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <Button
-        android:id="@+id/buttonLoadGame"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/loadGame"
-        android:background="@drawable/round_btn"
-        android:onClick="loadCustomLevel"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSettings"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNewGame" />
+        <Button
+            android:id="@+id/buttonSettings"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/settings"
+            android:background="@drawable/round_btn"
+            app:layout_constraintBottom_toTopOf="@+id/buttonScores"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/buttonLoadGame" />
 
-    <Button
-        android:id="@+id/buttonLevelEditor"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="openLevelEditor"
-        android:text="@string/level_editor"
-        android:background="@drawable/round_btn"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/buttonScores" />
+        <Button
+            android:id="@+id/buttonScores"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="openScorePage"
+            android:text="@string/scores"
+            android:background="@drawable/round_btn"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
 
-    <Button
-        android:id="@+id/buttonQuit"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="quitGame"
-        android:text="@string/quit"
-        android:background="@drawable/round_btn"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLevelEditor" />
+        <Button
+            android:id="@+id/buttonLoadGame"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/loadGame"
+            android:background="@drawable/round_btn"
+            android:onClick="loadCustomLevel"
+            app:layout_constraintBottom_toTopOf="@+id/buttonSettings"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/buttonNewGame" />
 
-    <Button
-        android:id="@+id/buttonNewGame"
-        android:layout_width="240dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_btn"
-        android:onClick="startGame"
-        android:text="@string/newGame"
-        app:layout_constraintBottom_toTopOf="@+id/buttonLoadGame"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <Button
+            android:id="@+id/buttonLevelEditor"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="openLevelEditor"
+            android:text="@string/level_editor"
+            android:background="@drawable/round_btn"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/buttonScores" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        <Button
+            android:id="@+id/buttonQuit"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="quitGame"
+            android:text="@string/quit"
+            android:background="@drawable/round_btn"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/buttonLevelEditor" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/buttonNewGame"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/round_btn"
+            android:onClick="startGame"
+            android:text="@string/newGame"
+            app:layout_constraintBottom_toTopOf="@+id/buttonLoadGame"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

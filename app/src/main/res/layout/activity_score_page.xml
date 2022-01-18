@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="45dp"
         android:text="TextView"
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="45dp"
         android:text="TextView"
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -108,12 +108,10 @@
         android:layout_marginTop="45dp"
         android:text="TextView"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.023"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textViewScore2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewScore2" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
@@ -140,5 +138,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_share" />
+
+    <Button
+        android:id="@+id/buttonMatchHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Storico Partite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewScore3" />
 
 </android.support.constraint.ConstraintLayout>
