@@ -148,11 +148,16 @@
             android:id="@+id/shareScoreButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="44dp"
             android:clickable="true"
             app:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintLeft_toRightOf="@id/buttonMatchHistory"
+            app:layout_constraintTop_toBottomOf="@+id/textViewScore3"
             app:srcCompat="@android:drawable/ic_menu_share"
-            tools:layout_editor_absoluteX="311dp"
-            tools:layout_editor_absoluteY="244dp" />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/buttonMatchHistory"
@@ -161,8 +166,8 @@
             android:layout_marginTop="40dp"
             android:text="Storico Partite"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintEnd_toStartOf="@+id/shareScoreButton"
+            app:layout_constraintHorizontal_bias="0.161"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/textViewScore3"
             app:layout_constraintVertical_bias="0.0" />
