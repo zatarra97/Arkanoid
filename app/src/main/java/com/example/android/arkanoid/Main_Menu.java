@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import androidx.navigation.ui.AppBarConfiguration;
 import java.util.HashMap;
@@ -24,13 +25,13 @@ public class Main_Menu extends AppCompatActivity {
         setContentView(R.layout.main_menu);
 
         Main_Menu obj = new Main_Menu();
-
     }
 
     @Override
     public void onBackPressed(){
-
     }
+
+
 
     public void startGame(View view) {
         Intent intent1 = new Intent (this, MainActivity.class);
@@ -78,5 +79,10 @@ public class Main_Menu extends AppCompatActivity {
     public void quitGame(View view){
         Intent toExit = new Intent(this, ExitActivity.class);
         startActivity(toExit);
+    }
+
+    public void openSettings(View view) {
+        Intent intent1 = new Intent(this, SettingsPage.class);
+        startActivity(intent1);
     }
 }
