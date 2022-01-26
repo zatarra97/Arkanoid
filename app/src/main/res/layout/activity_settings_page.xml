@@ -41,8 +41,12 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="96dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="104dp"
             android:text="Lingua"
+            android:fontFamily="@font/aclonica"
+            android:textSize="20sp"
+            android:textColor="#000"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -50,8 +54,12 @@
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="144dp"
-            android:text="Musiche"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="152dp"
+            android:fontFamily="@font/aclonica"
+            android:text="Suoni"
+            android:textSize="20sp"
+            android:textColor="#000"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -59,15 +67,15 @@
             android:id="@+id/switch_music"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="20dp"
+            android:textOff="No"
+            android:textOn="Si"
+            android:thumb="@drawable/thumb"
             app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toBottomOf="@+id/textView6"
-            android:thumb="@drawable/thumb"
-            app:track="@drawable/thumb_track"
             app:showText="true"
-            android:textOn="Si"
-            android:textOff="No"
+            app:track="@drawable/thumb_track"
 
             />
 
