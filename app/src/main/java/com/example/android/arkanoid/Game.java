@@ -28,8 +28,8 @@ import java.util.Date;
 
 public class Game extends View implements SensorEventListener, View.OnTouchListener {
 
-    //Gestione Suoni mattoncini
-    private SoundManager sm;
+
+    private SoundManager sm; //Gestione Suoni mattoncini
     private Bitmap sfondo;
     private Bitmap redBall;
     private Bitmap allungato;
@@ -46,6 +46,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private int lifes;
     private int score;
     private int level;
+    private String gameTime = "Game Time: ";
+    private String gameLevel = " Level: ";
+    private String gameScore = " Score: ";
+    private String timeAndDate= " Time and Date: ";
     private boolean start;
     private boolean playing;
     private long startTime;
@@ -257,8 +261,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm,dd/MM/yyyy");
         String currentTimeDate = sdf.format(new Date());
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(formattedElapsedTime).append(",");
-        stringBuilder.append(level).append(",").append(score).append(",").append(currentTimeDate).append(";\n");
+        stringBuilder.append(gameTime + formattedElapsedTime).append(",");
+        stringBuilder.append(gameLevel + level).append(",").append(gameScore + score).append(",").append(timeAndDate + currentTimeDate).append(";\n");
         String textToWrite = stringBuilder.toString();
 
         // Checking the availability state of the External Storage.
