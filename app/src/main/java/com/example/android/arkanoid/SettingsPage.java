@@ -1,5 +1,6 @@
 package com.example.android.arkanoid;
 
+import android.content.Intent;
 import android.support.design.chip.ChipGroup;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,13 @@ public class SettingsPage extends AppCompatActivity {
 
     }
 
+    //metodo per governare il tasto back del sistema operativo
+    @Override
+    public void onBackPressed(){
+        Intent toMainMenu = new Intent(this, Main_Menu.class);
+        startActivity(toMainMenu);
+        finish();
+    }
 
 
 }
