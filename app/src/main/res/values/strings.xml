@@ -29,5 +29,6 @@
     <string name="historical_games">historical games</string>
     <string name="dai_un_nome_al_livello">Name the level</string>
     <string name="initial_speed_ball">Initial speed ball:</string>
+    <string name="sadimage">sadImage</string>
 
 </resources>

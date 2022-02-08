@@ -11,55 +11,62 @@
         android:id="@+id/btnNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="102dp"
-        android:layout_marginBottom="424dp"
+        android:layout_marginTop="67dp"
+        android:background="@drawable/round_btn"
         android:onClick="onClickExit"
         android:text="@string/no"
-        android:background="@drawable/round_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
         app:layout_constraintRight_toLeftOf="@id/btnSi"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/tvExit"
-        app:layout_constraintVertical_bias="0.215" />
+        app:layout_constraintVertical_bias="0.057"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btnSi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="102dp"
-        android:layout_marginBottom="424dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/round_btn"
         android:onClick="onClickExit"
         android:text="@string/yes"
-        android:background="@drawable/round_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.633"
+        app:layout_constraintHorizontal_bias="0.62"
+
         app:layout_constraintStart_toEndOf="@+id/btnNo"
         app:layout_constraintTop_toBottomOf="@+id/tvExit"
-        app:layout_constraintVertical_bias="0.207" />
+        app:layout_constraintVertical_bias="0.039"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/tvExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="376dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="172dp"
+        android:layout_marginBottom="152dp"
         android:text="@string/quit_really"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/imageSad" />
 
     <ImageView
         android:id="@+id/imageSad"
         android:layout_width="135dp"
-        android:layout_height="118dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/sadimage"
         app:layout_constraintBottom_toTopOf="@id/tvExit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_top"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_top"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/sad" />
 
     <android.support.constraint.Guideline
@@ -82,4 +89,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
 </android.support.constraint.ConstraintLayout>
