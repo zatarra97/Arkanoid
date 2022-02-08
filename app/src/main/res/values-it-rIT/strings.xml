@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Arkanoid</string>
+    <string name="newGame">Nuova partita</string>
+    <string name="loadGame">Carica partita</string>
+    <string name="settings">Multiplayer</string>
+    <string name="scores">Punteggi</string>
+    <string name="quit">Esci</string>
+    <string name="bestScores">Punteggi migliori</string>
+    <string name="level_editor">Editor di livelli</string>
+    <string name="title_activity_main_menu">Menu principale</string>
+    <string name="first_fragment_label">Primo fragment</string>
+    <string name="second_fragment_label">Secondo fragment</string>
+    <string name="next">Prossimo</string>
+    <string name="previous">Precedente</string>
+    <string name="hello_first_fragment">Ciao primo fragment</string>
+    <string name="hello_second_fragment">Ciao secondo fragment</string>
+    <string name="title_splash_screen">Arkan App</string>
+    <string name="welcome">Benvenuti in</string>
+    <string name="quit_really">Vuoi veramente uscire?</string>
+    <string name="no">No</string>
+    <string name="yes">Si</string>
+</resources>

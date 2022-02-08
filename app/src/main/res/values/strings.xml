@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">Arkanoid</string>
 
-    <string name="newGame">Nuova Partita</string>
-    <string name="loadGame">Carica Partita</string>
-    <string name="settings">Impostazioni</string>
-    <string name="scores">Punteggi</string>
-    <string name="quit">Esci</string>
+    <string name="newGame">New Game</string>
+    <string name="loadGame">Load Game</string>
+    <string name="settings">Multiplayer</string>
+    <string name="scores">Scores</string>
+    <string name="quit">Quit</string>
 
-    <string name="bestScores">Punteggi migliori</string>
+    <string name="bestScores">Best Scores</string>
 
-    <string name="level_editor">Editor Livelli</string>
+    <string name="level_editor">Levels Editor</string>
 
     <string name="title_activity_main_menu">Main_Menu</string>
     <!-- Strings used for fragments for navigation -->
@@ -22,7 +22,9 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="title_splash_screen">Arkan App</string>
-    <string name="welcome"> Benvenuti in </string>
-    <string name="vuoi_davvero_uscire">Vuoi davvero uscire?</string>
+    <string name="welcome"> Welcome in </string>
+    <string name="quit_really">Do you really want to go out?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 
 </resources>
