@@ -26,5 +26,8 @@
     <string name="quit_really">Do you really want to go out?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
+    <string name="historical_games">historical games</string>
+    <string name="dai_un_nome_al_livello">Name the level</string>
+    <string name="initial_speed_ball">Initial speed ball:</string>
 
 </resources>

@@ -20,4 +20,7 @@
     <string name="quit_really">Vuoi veramente uscire?</string>
     <string name="no">No</string>
     <string name="yes">Si</string>
+    <string name="historical_games">Storico partite</string>
+    <string name="dai_un_nome_al_livello">Dai un nome al livello</string>
+    <string name="initial_speed_ball">Velocità iniziale della palla</string>
 </resources>
