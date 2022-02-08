@@ -45,20 +45,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="172dp"
         android:layout_marginBottom="152dp"
         android:text="@string/quit_really"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintLeft_toRightOf="@id/guideline_left"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/imageSad" />
 
     <ImageView
         android:id="@+id/imageSad"
-        android:layout_width="135dp"
-        android:layout_height="128dp"
+        android:layout_width="126dp"
+        android:layout_height="89dp"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/sadimage"
         app:layout_constraintBottom_toTopOf="@id/tvExit"
@@ -74,14 +74,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.2" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.8" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_top"

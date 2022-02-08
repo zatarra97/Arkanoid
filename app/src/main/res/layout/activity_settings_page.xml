@@ -12,7 +12,6 @@
         android:paddingBottom="40dp"
         >
 
-
         <View
             android:layout_width="match_parent"
             android:layout_height="400dp"
@@ -43,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="84dp"
             android:layout_marginTop="104dp"
-            android:text="Lingua"
+            android:text="@string/language"
             android:fontFamily="@font/aclonica"
             android:textSize="20sp"
             android:textColor="#000"
@@ -57,7 +56,7 @@
             android:layout_marginStart="84dp"
             android:layout_marginTop="152dp"
             android:fontFamily="@font/aclonica"
-            android:text="Suoni"
+            android:text="@string/sounds"
             android:textSize="20sp"
             android:textColor="#000"
             app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -69,8 +68,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="88dp"
             android:layout_marginTop="20dp"
-            android:textOff="No"
-            android:textOn="Si"
+            android:textOff="@string/no"
+            android:textOn="@string/yes"
             android:thumb="@drawable/thumb"
             app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toBottomOf="@+id/textView6"
