@@ -33,5 +33,9 @@
     <string name="language">Language</string>
     <string name="sounds">Sounds</string>
     <string name="multiplayer">Multiplayer</string>
+    <string name="gametime">Game Time: </string>
+    <string name="gamelevel">Level: </string>
+    <string name="score">Score: </string>
+    <string name="timeanddate">Time and Date: </string>
 
 </resources>

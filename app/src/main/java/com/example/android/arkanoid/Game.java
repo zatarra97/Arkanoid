@@ -46,10 +46,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private int lifes;
     private int score;
     private int level;
-    private String gameTime = "Game Time: ";
-    private String gameLevel = " Level: ";
-    private String gameScore = " Score: ";
-    private String timeAndDate= " Time and Date: ";
+    private String gameTime = String.valueOf(R.string.gametime);
+    private String gameLevel = String.valueOf(R.string.gamelevel);
+    private String gameScore = String.valueOf(R.string.score);
+    private String timeAndDate= String.valueOf(R.string.timeanddate);
     private boolean start;
     private boolean playing;
     private long startTime;
@@ -261,6 +261,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm,dd/MM/yyyy");
         String currentTimeDate = sdf.format(new Date());
         StringBuilder stringBuilder = new StringBuilder();
+        //Info che verranno scritte sul file di testo per la memorizzazione storricità delle partite
         stringBuilder.append(gameTime + formattedElapsedTime).append(",");
         stringBuilder.append(gameLevel + level).append(",").append(gameScore + score).append(",").append(timeAndDate + currentTimeDate).append(";\n");
         String textToWrite = stringBuilder.toString();
