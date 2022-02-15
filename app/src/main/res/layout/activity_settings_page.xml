@@ -4,22 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:visibility="visible">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="40dp"
-        >
+        android:paddingBottom="40dp">
 
         <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:background="@drawable/ic_wave"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnLang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="72dp"
+            android:text="@string/selectLang"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/switch_music"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.152"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView"
@@ -37,15 +53,16 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tvlanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="84dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="104dp"
-            android:text="@string/language"
+            android:clickable="true"
             android:fontFamily="@font/aclonica"
-            android:textSize="20sp"
+            android:text="@string/language"
             android:textColor="#000"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -53,30 +70,36 @@
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="84dp"
-            android:layout_marginTop="152dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="180dp"
             android:fontFamily="@font/aclonica"
             android:text="@string/sounds"
-            android:textSize="20sp"
             android:textColor="#000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.025" />
 
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/switch_music"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="72dp"
             android:textOff="@string/no"
             android:textOn="@string/yes"
             android:thumb="@drawable/thumb"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+
             app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintVertical_bias="0.0"
             app:showText="true"
-            app:track="@drawable/thumb_track"
-
-            />
+            app:track="@drawable/thumb_track" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
@@ -92,6 +115,16 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.95" />
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
 
 
     </android.support.constraint.ConstraintLayout>

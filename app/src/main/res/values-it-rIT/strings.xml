@@ -31,4 +31,6 @@
     <string name="gamelevel">"Livello: "</string>
     <string name="score">"Punteggio: "</string>
     <string name="timeanddate">"Ora e Data: "</string>
+    <string name="selectLang">Seleziona</string>
+    <string name="selectLangTitle">Seleziona lingua</string>
 </resources>
