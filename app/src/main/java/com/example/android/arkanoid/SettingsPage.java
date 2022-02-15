@@ -6,16 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.support.design.chip.ChipGroup;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -28,31 +24,21 @@ public class SettingsPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadLocate();
-        setContentView(R.layout.activity_settings_page);
+        setContentView(R.layout.settings_page_layout);
 
         //per far comparire la freccia in alto a sinistra
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //associazione tasto al tasto del layout corrispondente
         lbtn = findViewById(R.id.btnLang);
-        language = findViewById(R.id.tvlanguage);
 
-        language.setOnClickListener(new View.OnClickListener(){
-            @Override
-                    public void onClick(View v){
-                        showChangeLang();
-            }
-        });
-
+        //metodo che verrà avviato al click del pulsante
         lbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showChangeLang();
             }
         });
-
-
-
-
 
     }
 
@@ -82,6 +68,7 @@ public class SettingsPage extends AppCompatActivity {
         finish();
     }
 
+    //funzione che imposta nelle preferenze dell'app la lingua selezionata
     private void setLocate(String lang){
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
@@ -96,6 +83,7 @@ public class SettingsPage extends AppCompatActivity {
         editor.apply();
     }
 
+    //funzione che esegue l'impostazione della lingua
     private void loadLocate(){
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         String language = sharedPreferences.getString("My_Lang", "");
@@ -104,6 +92,7 @@ public class SettingsPage extends AppCompatActivity {
         }
     }
 
+    //funzione che permette di aprire un DIalogAlert con l'elenco delle lingue selezionabili
     private void showChangeLang(){
         String listItems[]={"English","Italiano"};
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
