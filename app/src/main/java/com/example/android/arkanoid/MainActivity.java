@@ -18,8 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Game game;
     private UpdateThread myThread;
     private Handler updateHandler;
-    private int selectedController;
-    String[] controllers = {"Tasti", "Accelerometro"};
+    private String selectedController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +27,12 @@ public class MainActivity extends AppCompatActivity {
         // imposta l'orientamento dello schermo
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scegli come controllare il Paddle");
-        builder.setItems(controllers, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                selectedController = which;
-                dialog.dismiss();
-            }
-        });
-        builder.setCancelable(false);
-        builder.show();
 
         String custom_level = "";
+        String selectedController = "";
         if (getIntent().getExtras() != null) {
             custom_level = getIntent().getExtras().getString("custom_level");
+            selectedController = getIntent().getExtras().getString("saved_controller");
         }
 
         // crea un nuovo gioco

@@ -18,7 +18,7 @@ public class Main_Menu extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private String selectedLevel;
-
+    private String selectedController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +31,18 @@ public class Main_Menu extends AppCompatActivity {
     public void onBackPressed(){
     }
 
-
+    @Override
+    public void onResume(){
+        super.onResume();
+        final SharedPreferences sp = this.getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
+        String selectedController = "";
+        sp.getString("saved_controller", selectedController);
+        this.selectedController = selectedController;
+    }
 
     public void startGame(View view) {
         Intent intent1 = new Intent (this, MainActivity.class);
+        intent1.putExtra("saved_controller", this.selectedController);
         startActivity(intent1);
     }
 

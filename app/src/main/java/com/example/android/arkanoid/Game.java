@@ -57,9 +57,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private boolean gameOver;
     private boolean newRecord;
     private Context context;
-    private int controller;
+    private String controller;
 
-    public Game(Context context, int lifes, int score, String custom_level, int controller) {
+
+    public Game(Context context, int lifes, int score, String custom_level, String controller) {
         super(context);
         paint = new Paint();
 
@@ -80,9 +81,11 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
         // vytvorí akcelerometer a SensorManager
         //crea un accelerometro e un SensorManager
-        if(controller == 1){
+        if(controller.equals("Accelerometer")){
             sManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
             accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        } else {
+            Log.i("CONTROLLER", "controller is empty");
         }
 
         leggiSfondo(context);
@@ -207,7 +210,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         canvas.drawText("Punti", 500, 50, paint);
         canvas.drawText("Lvl", 800, 50, paint);
 
-        if (controller == 0) {
+        if (controller.equals("Arrows")) {
             Bitmap dxMap =  BitmapFactory.decodeResource(getResources(), R.drawable.arrow_dx);
             r = new RectF(size.x-300f,  size.y-150f, size.x-150f,size.y-300f);
             canvas.drawBitmap(dxMap, null, r, paint);
@@ -431,7 +434,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 startTime = System.nanoTime();
                 playing = true;
             } else {
-                if (controller == 0) {
+                if (controller.equals("Arrows")) {
                     if (event.getX() > size.x / 2) {
                         paddle.setX(paddle.getX() + 100);
                         if (paddle.getX() > size.x - 200) {
