@@ -32,6 +32,7 @@
     <string name="sadimage">sadImage</string>
     <string name="language">Language</string>
     <string name="sounds">Sounds</string>
+    <string name="controllers">Controllers</string>
     <string name="multiplayer">Multiplayer</string>
     <string name="gametime">Game Time: </string>
     <string name="gamelevel">Level: </string>

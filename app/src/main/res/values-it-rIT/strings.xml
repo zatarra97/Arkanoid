@@ -26,6 +26,7 @@
     <string name="sadimage">Immagine triste</string>
     <string name="language">Lingua</string>
     <string name="sounds">Suoni</string>
+    <string name="controllers">Controllo</string>
     <string name="multiplayer">Multiplayer</string>
     <string name="gametime">"Tempo di gioco: "</string>
     <string name="gamelevel">"Livello: "</string>

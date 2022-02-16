@@ -13,11 +13,12 @@
         >
 
         <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:background="@drawable/ic_wave"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,6 +63,19 @@
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="200dp"
+            android:fontFamily="@font/aclonica"
+            android:text="@string/controllers"
+            android:textColor="#000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/switch_music"
             android:layout_width="wrap_content"
@@ -92,6 +106,15 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.95" />
 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="139dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="200dp"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
     </android.support.constraint.ConstraintLayout>

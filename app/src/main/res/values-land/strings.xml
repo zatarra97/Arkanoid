@@ -8,5 +8,6 @@
     <string name="sadimage">sadImage</string>
     <string name="language">Language</string>
     <string name="sounds">Sounds</string>
+    <string name="controllers">Controllers</string>
     <string name="multiplayer">Multiplayer</string>
 </resources>
