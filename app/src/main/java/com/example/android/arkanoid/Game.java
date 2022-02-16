@@ -294,6 +294,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     // kazdy krok kontroluje ci nedoslo ku kolizii, k prehre alebo k vyhre atd
     //ogni passaggio controlla se c'è una collisione, una perdita o una vittoria, ecc
     public void update() {
+        //carico l'impostazione della preferenza del suono in gioco
+        SharedPreferences sharedprefsound = context.getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
+        boolean flagSounds = sharedprefsound.getBoolean("switch_sounds",false); //flag di controllo del suono
+
         if (start) {
             vincita();
             controllaBordi();
@@ -305,19 +309,27 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                     if(b.isBomb()){
                         //logica da implementare se la palla è nera tipo scoppiano anche i mattonci vicino
                         distruggiBomba(i);
-                        //riproduzione suono mattoncino bomba
-                        sm.playBomb();
+                        if(flagSounds) {
+                            //riproduzione suono mattoncino bomba
+                            sm.playBomb();
+                        }
                     } else if (b.isLifeUp()) {
                         this.lifes += 1;
-                        //riproduzione suono powerUp
-                        sm.playPup();
+                        if(flagSounds) {
+                            //riproduzione suono powerUp
+                            sm.playPup();
+                        }
                     } else if (b.isSpeedUp()) {
                         palla.increaseSpeed(level+5);
-                        //riproduzione suono powerUp
-                        sm.playPup();
+                        if(flagSounds) {
+                            //riproduzione suono powerUp
+                            sm.playPup();
+                        }
                     }else{
-                        //riproduzione suono mattoncino generico
-                        sm.playHit();
+                        if(flagSounds) {
+                            //riproduzione suono mattoncino generico
+                            sm.playHit();
+                        }
                     }
                     b.distruggi();
                     score = score + 80;

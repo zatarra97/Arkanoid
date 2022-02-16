@@ -19,6 +19,7 @@ public class Main_Menu extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private String selectedLevel;
+    private SettingsPage settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

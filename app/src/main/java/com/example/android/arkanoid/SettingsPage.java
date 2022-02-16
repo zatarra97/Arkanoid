@@ -8,10 +8,12 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SwitchCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -19,7 +21,7 @@ import java.util.Locale;
 
 public class SettingsPage extends AppCompatActivity {
 
-    private Switch mSwitch;
+    private SwitchCompat mSwitch;
     private Button lbtn;
     private TextView language;
     protected static boolean flag_sounds = false; //flag per attivare/disattivare i suoni del gioco
@@ -27,23 +29,45 @@ public class SettingsPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocate();
         setContentView(R.layout.settings_page_layout);
 
         //per far comparire la freccia in alto a sinistra
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //associazione switchcompact
-        //mSwitch = findViewById(R.id.switch_music);
-
-
+        mSwitch = (SwitchCompat)findViewById(R.id.switch_music);
         //associazione tasto al tasto del layout corrispondente
-        lbtn = findViewById(R.id.btnLang);
+        lbtn = (Button) findViewById(R.id.btnLang);
 
-        //metodo che verrà avviato al click del pulsante
+
+        //metodo che verrà avviato al click del pulsante per la lingua
         lbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showChangeLang();
+            }
+        });
+
+        //Setto lo switchcompact per il suono, salvo nella SharedPReferences
+        SharedPreferences sharedprefsound = getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedprefsound.edit();
+        mSwitch.setChecked(sharedprefsound.getBoolean("switch_sounds", false));
+
+        //setto l'ascoltatore dello switchcompact
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    editor.putBoolean("switch_sounds", true);
+                    editor.apply();
+
+                } else if(!mSwitch.isChecked()){
+                    editor.putBoolean("switch_sounds", false);
+                    editor.apply();
+
+                }
+                editor.commit();
             }
         });
 

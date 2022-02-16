@@ -66,6 +66,7 @@
             android:textOff="@string/no"
             android:textOn="@string/yes"
             android:thumb="@drawable/thumb"
+            android:checked="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintLeft_toRightOf="@id/tvSounds"
