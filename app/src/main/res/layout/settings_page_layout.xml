@@ -8,7 +8,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingBottom="40dp">
 
         <View
@@ -62,13 +62,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="100dp"
+            android:minHeight="48dp"
             android:textOff="@string/no"
             android:textOn="@string/yes"
             android:thumb="@drawable/thumb"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="@+id/guideline5"
             app:layout_constraintLeft_toRightOf="@id/tvSounds"
+            app:layout_constraintTop_toTopOf="@+id/guideline5"
             app:layout_constraintVertical_bias="0.018"
             app:showText="true"
             app:track="@drawable/thumb_track" />

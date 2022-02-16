@@ -187,7 +187,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         paint.setColor(Color.GREEN);
         for (int i = 0; i < mattoncini.size(); i++) {
             Brick b = mattoncini.get(i);
-            r = new RectF(b.getX(), b.getY(), b.getX() + 100, b.getY() + 80);
+            r = new RectF(b.getX(), b.getY(), b.getX() + 120, b.getY() + 80);
             canvas.drawBitmap(b.getBrick(), null, r, paint);
         }
 

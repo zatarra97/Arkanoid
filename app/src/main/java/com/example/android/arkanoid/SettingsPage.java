@@ -12,22 +12,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.Locale;
 
 public class SettingsPage extends AppCompatActivity {
 
+    private Switch mSwitch;
     private Button lbtn;
     private TextView language;
+    protected static boolean flag_sounds = false; //flag per attivare/disattivare i suoni del gioco
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadLocate();
         setContentView(R.layout.settings_page_layout);
 
         //per far comparire la freccia in alto a sinistra
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //associazione switchcompact
+        //mSwitch = findViewById(R.id.switch_music);
+
 
         //associazione tasto al tasto del layout corrispondente
         lbtn = findViewById(R.id.btnLang);
@@ -78,14 +85,14 @@ public class SettingsPage extends AppCompatActivity {
         getBaseContext().getResources().updateConfiguration(
                 config, getBaseContext().getResources().getDisplayMetrics());
 
-        SharedPreferences.Editor editor= getPreferences(Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor= getSharedPreferences("com.example.android.arkanoid",Context.MODE_PRIVATE).edit();
         editor.putString("My_Lang", lang);
         editor.apply();
     }
 
     //funzione che esegue l'impostazione della lingua
-    private void loadLocate(){
-        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+    protected void loadLocate(){
+        SharedPreferences sharedPreferences = getSharedPreferences("com.example.android.arkanoid",Context.MODE_PRIVATE);
         String language = sharedPreferences.getString("My_Lang", "");
         if(language!=""){
             setLocate(language);

@@ -13,6 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import com.example.android.arkanoid.SettingsPage;
 
 public class Main_Menu extends AppCompatActivity {
 
