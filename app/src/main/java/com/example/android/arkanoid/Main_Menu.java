@@ -34,9 +34,11 @@ public class Main_Menu extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        final SharedPreferences sp = this.getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
-        String selectedController = "";
-        sp.getString("saved_controller", selectedController);
+        SharedPreferences sp = this.getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
+        String selectedController = sp.getString("saved_controller", "");
+        if (selectedController.isEmpty()) {
+            selectedController = "Arrows";
+        }
         this.selectedController = selectedController;
     }
 

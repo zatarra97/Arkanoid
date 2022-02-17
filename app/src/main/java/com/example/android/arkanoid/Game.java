@@ -84,8 +84,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         if(controller.equals("Accelerometer")){
             sManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
             accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        } else {
-            Log.i("CONTROLLER", "controller is empty");
         }
 
         leggiSfondo(context);
