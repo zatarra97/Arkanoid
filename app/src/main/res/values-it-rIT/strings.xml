@@ -33,4 +33,5 @@
     <string name="timeanddate">"Ora e Data: "</string>
     <string name="selectLang">Seleziona</string>
     <string name="selectLangTitle">Seleziona lingua</string>
+    <string name="imagesad">imageSad</string>
 </resources>
