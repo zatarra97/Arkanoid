@@ -14,12 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
-public class SettingsPage extends AppCompatActivity {
+public class SettingsPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private SwitchCompat mSwitch;
     private Button lbtn;
@@ -34,6 +37,15 @@ public class SettingsPage extends AppCompatActivity {
 
         //per far comparire la freccia in alto a sinistra
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Spinner dropdown = findViewById(R.id.spinner);
+        //create a list of items for the spinner.
+        String[] items = new String[]{"Arrows", "Accelerometer"};
+        //create an adapter to describe how the items are displayed
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        //set the spinners adapter to the previously created one.
+        dropdown.setAdapter(adapter);
+        dropdown.setOnItemSelectedListener(this);
 
         //associazione switchcompact
         mSwitch = (SwitchCompat)findViewById(R.id.switch_music);
@@ -71,6 +83,26 @@ public class SettingsPage extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        final SharedPreferences sp = this.getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected controller: " + item, Toast.LENGTH_LONG).show();
+        try {
+            editor.putString("saved_controller", item);
+            editor.apply();
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText( SettingsPage.this, "Errore salvataggio impostazioni", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
     }
 
     //viene chiamato quando si preme il tasto indietro in alto a sinistra
