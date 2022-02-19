@@ -60,7 +60,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private int lifes;
     private int score;
     private int level;
-    private String gameTime = (String)String.valueOf(R.string.gametime);
+    private String gameTime = String.valueOf(R.string.gametime);
     private String gameLevel = String.valueOf(R.string.gamelevel);
     private String gameScore = String.valueOf(R.string.score);
     private String timeAndDate= String.valueOf(R.string.timeanddate);
@@ -219,8 +219,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         canvas.drawText("" + level, 820, 120, paint);
 
         paint.setColor(Color.RED);
-        canvas.drawText("Vite" , 200, 50, paint);
-        canvas.drawText("Punti", 500, 50, paint);
+        canvas.drawText("Lifes", 200, 50, paint);
+        canvas.drawText("Scores", 500, 50, paint);
         canvas.drawText("Lvl", 800, 50, paint);
 
         if (controller.equals("Arrows")) {
@@ -466,7 +466,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             android.content.ClipboardManager clipboard = (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             android.content.ClipData clip = android.content.ClipData.newPlainText("Message", new_match_id);
             clipboard.setPrimaryClip(clip);
-            Toast.makeText( context, "MatchID copiato nelle note: Condividilo con il tuo avversario", Toast.LENGTH_SHORT).show();
+            Toast.makeText( context, R.string.copy_matchId_clipboard, Toast.LENGTH_SHORT).show();
         }
 
         //Salva in locale il punteggio

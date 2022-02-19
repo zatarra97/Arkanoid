@@ -43,5 +43,7 @@
     <string name="selectLangTitle">Select the language</string>
     <string name="matchId">Insert match ID</string>
     <string name="imagesad">imageSad</string>
+    <string name="copy_matchId_clipboard">MatchID copied in notes: Share it with your opponent</string>
+    <string name="lifes">lifes</string>
 
 </resources>
