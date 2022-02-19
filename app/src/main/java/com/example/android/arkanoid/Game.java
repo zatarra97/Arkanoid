@@ -1,6 +1,7 @@
 package com.example.android.arkanoid;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,12 +20,25 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Game extends View implements SensorEventListener, View.OnTouchListener {
 
@@ -58,8 +72,9 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private boolean newRecord;
     private Context context;
     private String controller;
+    private String match_id;
 
-    public Game(Context context, int lifes, int score, String custom_level, String controller) {
+    public Game(Context context, int lifes, int score, String custom_level, String controller, String other_player) {
         super(context);
         paint = new Paint();
 
@@ -68,6 +83,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.lifes = lifes;
         this.score = score;
         this.controller = controller;
+        this.match_id = other_player;
         level = 1;
         sm.init(context); //SoundManager
 
@@ -253,7 +269,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             checkScore(score);
             invalidate();
             endTime = System.nanoTime();
-            salvaPartitaInFile();
         } else {
             lifes--;
             palla.setX(size.x / 2);
@@ -264,7 +279,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         }
     }
 
-    public void salvaPartitaInFile() {
+    public void salvaPartitaInFile(String match_id) {
         // Elapsed Play Time
         double elapsedTime = (Double.valueOf(String.valueOf(endTime - startTime)) * 0.000000001);
         DecimalFormat df = new DecimalFormat("#####.##");
@@ -277,7 +292,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         StringBuilder stringBuilder = new StringBuilder();
         //Info che verranno scritte sul file di testo per la memorizzazione storricità delle partite
         stringBuilder.append("Time game: " + formattedElapsedTime).append(",");
-        stringBuilder.append("Level: " + level).append(",").append("Game score: " + score).append(",").append("Time and Date: " + currentTimeDate).append(";\n");
+        stringBuilder.append("Level: " + level).append(",").append("Game score: " + score).append(",").append("Time and Date: " + currentTimeDate).append(",");
+        stringBuilder.append("MatchID: " + match_id).append(";\n");
         String textToWrite = stringBuilder.toString();
 
         // Checking the availability state of the External Storage.
@@ -384,7 +400,76 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         int secondo = Integer.parseInt(ssecondo);
         int terzo = Integer.parseInt(sterzo);
 
-        //Salva il punteggio
+        // Prepara per salvataggio su db i dati della partita multiplayer
+        String nickname = sp.getString("nickname", "Guest");
+        String deviceID = sp.getString("device_id", "");
+        String id = nickname + "-" + deviceID;
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();
+
+        // inizializza Fiebase Database
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://arkanoid2022-default-rtdb.europe-west1.firebasedatabase.app");
+        DatabaseReference multiplayerRootRef = database.getReference("Multiplayer");
+
+        // aggiorna su Firebase Database con attuale punteggio del giocatore
+        if (match_id != null && !match_id.isEmpty()) {
+            salvaPartitaInFile(match_id);
+            multiplayerRootRef.child(match_id).child("nicknameB").setValue(nickname+"-"+deviceID);
+            multiplayerRootRef.child(match_id).child("pointsB").setValue(String.valueOf(score));
+            multiplayerRootRef.child(match_id).child("timestampB").setValue(ts);
+
+            // Verifica se ha vinto o perso
+            multiplayerRootRef.child(match_id).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                        Toast.makeText( getContext(), "Errore nel matchmaking", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                        if (task.getResult().getValue() != null) {
+                            HashMap result;
+                            try {
+                                String risultato = "";
+                                result = (HashMap) task.getResult().getValue();
+                                String res = (String) result.get("pointsA");
+                                Integer punteggioA = Integer.valueOf(res);
+                                if (punteggioA > score) {
+                                    risultato = "Hai perso!";
+                                } else if (punteggioA == score) {
+                                    risultato = "Hai pareggiato! ";
+                                } else {
+                                    risultato = "Hai vinto!";
+                                }
+                                Toast.makeText( getContext(), risultato, Toast.LENGTH_SHORT).show();
+                            } catch (RuntimeException e) {
+                                Toast.makeText( getContext(), "ID partita non esistente", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Log.e("firebase", "Error getting data", task.getException());
+                            Toast.makeText( getContext(), "ID partita non esistente", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            });
+        } else {
+            String new_match_id = id+"-"+ts;
+            // Salva statistica partite in file di test
+            salvaPartitaInFile(new_match_id);
+            // Salva dati su Firebase Realtime Database come nuova partita
+            multiplayerRootRef.child(new_match_id).child("nicknameA").setValue(nickname+"-"+deviceID);
+            multiplayerRootRef.child(new_match_id).child("pointsA").setValue(String.valueOf(score));
+            multiplayerRootRef.child(new_match_id).child("timestampA").setValue(ts);
+
+            // copy matchID to clipboard
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipData clip = android.content.ClipData.newPlainText("Message", new_match_id);
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText( context, "MatchID copiato nelle note: Condividilo con il tuo avversario", Toast.LENGTH_SHORT).show();
+        }
+
+        //Salva in locale il punteggio
         if (score > primo){
             sp.edit().putString("primo", String.valueOf(score)).apply();
             Log.i("Punteggio", "Nuovo primo posto:" + String.valueOf(score));

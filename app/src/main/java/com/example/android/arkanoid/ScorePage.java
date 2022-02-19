@@ -112,6 +112,11 @@ public class ScorePage extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setSingleChoiceItems(matches.toArray(new String[matches.size()]), -1, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int selectedItem) {
+                String selectedMatch = matches.get(selectedItem);
+                android.content.ClipboardManager clipboard = (android.content.ClipboardManager) ScorePage.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                android.content.ClipData clip = android.content.ClipData.newPlainText("Message", selectedMatch);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText( ScorePage.this, "Statistiche partita copiate nelle note: Condividile con i tuoi amici", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
