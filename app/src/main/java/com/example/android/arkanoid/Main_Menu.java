@@ -115,7 +115,7 @@ public class Main_Menu extends AppCompatActivity {
 
     public void openMultiplayer(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Inserisci il matchID");
+        builder.setTitle(R.string.matchId);
 
         // Set up the input
         final EditText input = new EditText(this);

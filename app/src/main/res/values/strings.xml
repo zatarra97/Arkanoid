@@ -41,6 +41,7 @@
     <string name="timeanddate">Time and Date: </string>
     <string name="selectLang">Select</string>
     <string name="selectLangTitle">Select the language</string>
+    <string name="matchId">Insert match ID</string>
     <string name="imagesad">imageSad</string>
 
 </resources>

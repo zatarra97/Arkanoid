@@ -36,4 +36,5 @@
     <string name="selectLang">Seleziona</string>
     <string name="selectLangTitle">Seleziona lingua</string>
     <string name="imagesad">imageSad</string>
+    <string name="matchId">Inserisci ID di collegamento</string>
 </resources>
