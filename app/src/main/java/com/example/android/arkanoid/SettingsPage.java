@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,6 +58,7 @@ public class SettingsPage extends AppCompatActivity implements AdapterView.OnIte
 
         // inserimento nickname utente
         final EditText input = findViewById(R.id.editTextTextPersonName);
+        input.setFilters(new InputFilter[] { new InputFilter.LengthFilter(20) });
         // recupera il nickname salvato
         String saved_nickname = sp.getString("nickname", "");
         input.setText(saved_nickname);
@@ -78,8 +80,6 @@ public class SettingsPage extends AppCompatActivity implements AdapterView.OnIte
             }
         };
         input.addTextChangedListener(textWatcher);
-        // TODO aggiungere massimo caratteri, salvare punteggio su db con nickname in GAME
-
 
         //associazione switchcompact
         mSwitch = (SwitchCompat)findViewById(R.id.switch_music);
