@@ -12,7 +12,9 @@ public class MainActivity extends AppCompatActivity {
     private Game game;
     private UpdateThread myThread;
     private Handler updateHandler;
+    private String custom_level;
     private String selectedController;
+    private String match_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +24,14 @@ public class MainActivity extends AppCompatActivity {
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
-        String custom_level = "";
-        String selectedController = "";
         if (getIntent().getExtras() != null) {
             custom_level = getIntent().getExtras().getString("custom_level");
             selectedController = getIntent().getExtras().getString("saved_controller");
+            match_id = getIntent().getExtras().getString("match_id");
         }
 
         // crea un nuovo gioco
-        game = new Game(this, 3, 0, custom_level, selectedController);
+        game = new Game(this, 3, 0, custom_level, selectedController, match_id);
         setContentView(game);
 
         // vytvori handler a thread

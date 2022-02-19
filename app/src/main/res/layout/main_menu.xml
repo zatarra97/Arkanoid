@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="@string/multiplayer"
+            android:onClick="openMultiplayer"
             android:background="@drawable/round_btn"
             app:layout_constraintBottom_toTopOf="@+id/buttonScores"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
