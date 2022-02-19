@@ -269,7 +269,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             checkScore(score);
             invalidate();
             endTime = System.nanoTime();
-            salvaPartitaInFile();
         } else {
             lifes--;
             palla.setX(size.x / 2);
@@ -280,7 +279,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         }
     }
 
-    public void salvaPartitaInFile() {
+    public void salvaPartitaInFile(String match_id) {
         // Elapsed Play Time
         double elapsedTime = (Double.valueOf(String.valueOf(endTime - startTime)) * 0.000000001);
         DecimalFormat df = new DecimalFormat("#####.##");
@@ -456,6 +455,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             });
         } else {
             String new_match_id = id+"-"+ts;
+            // Salva statistica partite in file di test
+            salvaPartitaInFile(new_match_id);
             // Salva dati su Firebase Realtime Database come nuova partita
             multiplayerRootRef.child(new_match_id).child("nicknameA").setValue(nickname+"-"+deviceID);
             multiplayerRootRef.child(new_match_id).child("pointsA").setValue(String.valueOf(score));
