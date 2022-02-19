@@ -9,6 +9,7 @@
     <string name="language">Language</string>
     <string name="sounds">Sounds</string>
     <string name="controllers">Controllers</string>
+    <string name="nickname">Nickname</string>
     <string name="multiplayer">Multiplayer</string>
     <string name="imagesad">imageSad</string>
 </resources>

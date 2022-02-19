@@ -8,11 +8,13 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -37,6 +39,10 @@ public class SettingsPage extends AppCompatActivity implements AdapterView.OnIte
         loadLocate();
         setContentView(R.layout.settings_page_layout);
 
+        // instanza delle SharedPreferences per salvare le impostazioni
+        SharedPreferences sp = getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+
         //per far comparire la freccia in alto a sinistra
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -48,6 +54,32 @@ public class SettingsPage extends AppCompatActivity implements AdapterView.OnIte
         //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
         dropdown.setOnItemSelectedListener(this);
+
+        // inserimento nickname utente
+        final EditText input = findViewById(R.id.editTextTextPersonName);
+        // recupera il nickname salvato
+        String saved_nickname = sp.getString("nickname", "");
+        input.setText(saved_nickname);
+        // registra i cambiamenti al nickname e li salva
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("nickname", s.toString());
+                editor.apply();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        };
+        input.addTextChangedListener(textWatcher);
+        // TODO aggiungere massimo caratteri, salvare punteggio su db con nickname in GAME
+
 
         //associazione switchcompact
         mSwitch = (SwitchCompat)findViewById(R.id.switch_music);
@@ -64,9 +96,7 @@ public class SettingsPage extends AppCompatActivity implements AdapterView.OnIte
         });
 
         //Setto lo switchcompact per il suono, salvo nella SharedPReferences
-        SharedPreferences sharedprefsound = getSharedPreferences("com.example.android.arkanoid", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedprefsound.edit();
-        mSwitch.setChecked(sharedprefsound.getBoolean("switch_sounds", false));
+        mSwitch.setChecked(sp.getBoolean("switch_sounds", false));
 
         //setto l'ascoltatore dello switchcompact
         mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){

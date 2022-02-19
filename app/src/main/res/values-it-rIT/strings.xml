@@ -31,6 +31,7 @@
     <string name="gamelevel">"Livello: "</string>
     <string name="score">"Punteggio: "</string>
     <string name="controllers">Controllo</string>
+    <string name="nickname">Nome Utente</string>
     <string name="timeanddate">"Ora e Data: "</string>
     <string name="selectLang">Seleziona</string>
     <string name="selectLangTitle">Seleziona lingua</string>

@@ -1,5 +1,6 @@
 package com.example.android.arkanoid;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -69,6 +70,7 @@ public class Main_Menu extends AppCompatActivity {
                 selectedLevel = livelli.get(sel);
                 Intent intent1 = new Intent (Main_Menu.this, MainActivity.class);
                 intent1.putExtra("custom_level", selectedLevel);
+                intent1.putExtra("saved_controller", selectedController);
                 dialog.dismiss();
                 Main_Menu.this.startActivity(intent1);
             }

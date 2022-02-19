@@ -23,6 +23,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tvlanguage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginBottom="48dp"
+            android:fontFamily="@font/aclonica"
+            android:text="@string/nickname"
+            android:textColor="#000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tvlanguage"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,31 +137,26 @@
             android:id="@+id/btnLang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="79dp"
             android:layout_marginEnd="72dp"
-            android:layout_marginBottom="36dp"
+            android:layout_marginBottom="96dp"
             android:text="@string/selectLang"
             app:layout_constraintBottom_toTopOf="@+id/guideline5"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintLeft_toRightOf="@id/tvlanguage"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintLeft_toRightOf="@id/tvlanguage" />
 
         <TextView
             android:id="@+id/tvlanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="79dp"
-            android:layout_marginBottom="56dp"
+            android:layout_marginBottom="104dp"
             android:fontFamily="@font/aclonica"
             android:text="@string/language"
             android:textColor="#000"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline5"
             app:layout_constraintEnd_toStartOf="@+id/btnLang"
-            app:layout_constraintHorizontal_bias="0.505"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="@+id/guideline" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -154,6 +164,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="278dp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="178dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5"
+            app:layout_constraintStart_toEndOf="@+id/tvlanguage2"
+            app:layout_constraintTop_toBottomOf="@+id/tvlanguage"
+            app:layout_constraintVertical_bias="0.467" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
