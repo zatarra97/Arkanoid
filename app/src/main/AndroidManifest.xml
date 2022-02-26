@@ -9,9 +9,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/redball"
+        android:icon="@mipmap/arkanapp_ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/redball"
+        android:roundIcon="@mipmap/arkanapp_ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
