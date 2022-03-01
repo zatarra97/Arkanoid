@@ -521,6 +521,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         if (gameOver == true && start == false) {
             score = 0;
             lifes = 3;
+            level = 1;
             resetLevel();
             gameOver = false;
         } else {
