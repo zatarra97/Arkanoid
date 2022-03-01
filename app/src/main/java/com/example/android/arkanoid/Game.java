@@ -266,9 +266,9 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             gameOver = true;
             playing = false;
             start = false;
+            endTime = System.nanoTime();
             checkScore(score);
             invalidate();
-            endTime = System.nanoTime();
         } else {
             lifes--;
             palla.setX(size.x / 2);
