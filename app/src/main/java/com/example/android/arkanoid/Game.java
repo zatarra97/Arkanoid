@@ -492,7 +492,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     //spustiSnimanie = eseguire scansione
     public void iniziaSparare() {
-        if(sManager != null) {
+        if(controller.equals("Accelerometer") && sManager != null) {
             sManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
         }
     }
