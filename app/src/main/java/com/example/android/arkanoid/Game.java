@@ -55,6 +55,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private ArrayList<Brick> mattoncini;
     private Paddle paddle;
     private RectF r;
+    private Bitmap dxMap =  BitmapFactory.decodeResource(getResources(), R.drawable.arrow_dx);
+    private Bitmap sxMap =  BitmapFactory.decodeResource(getResources(), R.drawable.arrow_sx);
     private SensorManager sManager;
     private Sensor accelerometer;
     private int lifes;
@@ -224,12 +226,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         canvas.drawText("Lvl", 800, 50, paint);
 
         if (controller.equals("Arrows")) {
-            Bitmap dxMap =  BitmapFactory.decodeResource(getResources(), R.drawable.arrow_dx);
-            r = new RectF(size.x-300f,  size.y-150f, size.x-150f,size.y-300f);
+            r = new RectF(size.x-300, size.y-300, size.x-150,size.y-150);
             canvas.drawBitmap(dxMap, null, r, paint);
 
-            Bitmap sxMap =  BitmapFactory.decodeResource(getResources(), R.drawable.arrow_sx);
-            r = new RectF(150f,  size.y-150f, 300f,size.y-300f);
+            r = new RectF(150, size.y-300, 300f,size.y-150);
             canvas.drawBitmap(sxMap, null, r, paint);
         }
 
