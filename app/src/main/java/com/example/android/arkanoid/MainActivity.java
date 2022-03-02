@@ -71,4 +71,9 @@ public class MainActivity extends AppCompatActivity {
         game.iniziaSparare();
     }
 
+    protected void onStop(){
+        super.onStop();
+        myThread.interrupt();
+    }
+
 }

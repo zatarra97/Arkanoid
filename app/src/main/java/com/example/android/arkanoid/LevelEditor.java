@@ -68,9 +68,9 @@ public class LevelEditor extends AppCompatActivity {
                     HashSet<String> levelsStringSet = new HashSet<String>();
                     levelsStringSet.add(serializedLevel);
                     sp.edit().putStringSet("custom_levels", levelsStringSet).apply();
-                    Toast.makeText( LevelEditor.this, "Livello salvato", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( LevelEditor.this, R.string.savelevel, Toast.LENGTH_SHORT).show();
                 } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText( LevelEditor.this, "Errore salvataggio", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( LevelEditor.this, R.string.errorSaveLevel, Toast.LENGTH_SHORT).show();
                 }
             }
         });

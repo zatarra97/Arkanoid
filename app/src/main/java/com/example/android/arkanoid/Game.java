@@ -291,8 +291,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         String currentTimeDate = sdf.format(new Date());
         StringBuilder stringBuilder = new StringBuilder();
         //Info che verranno scritte sul file di testo per la memorizzazione storricità delle partite
-        stringBuilder.append(gameTime + formattedElapsedTime).append(",");
-        stringBuilder.append(gameLevel + level).append(",").append(gameScore + score).append(",").append(timeAndDate + currentTimeDate).append(",");
+        stringBuilder.append(timeAndDate + currentTimeDate).append(", ");
+        stringBuilder.append(gameLevel + level).append(", ").append(gameScore + score).append(", ").append(gameTime + formattedElapsedTime + "sec").append(", ");
         stringBuilder.append("MatchID: " + match_id).append(";\n");
         String textToWrite = stringBuilder.toString();
 

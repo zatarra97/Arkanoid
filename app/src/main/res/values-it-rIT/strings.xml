@@ -39,4 +39,6 @@
     <string name="matchId">Inserisci ID di collegamento</string>
     <string name="copy_matchId_clipboard">MatchID copiato nelle note: Condividilo con il tuo avversario</string>
     <string name="lifes">vite</string>
+    <string name="savelevel">Livello salvato</string>
+    <string name="errorSaveLevel">Errore salvataggio livello</string>
 </resources>

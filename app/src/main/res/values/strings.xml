@@ -45,5 +45,7 @@
     <string name="imagesad">imageSad</string>
     <string name="copy_matchId_clipboard">MatchID copied in notes: Share it with your opponent</string>
     <string name="lifes">lifes</string>
+    <string name="savelevel">level saved</string>
+    <string name="errorSaveLevel">Error to save level</string>
 
 </resources>

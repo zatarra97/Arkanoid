@@ -179,7 +179,7 @@ public class SettingsPage extends AppCompatActivity implements AdapterView.OnIte
     }
 
     //funzione che esegue l'impostazione della lingua
-    protected void loadLocate(){
+    public void loadLocate(){
         SharedPreferences sharedPreferences = getSharedPreferences("com.example.android.arkanoid",Context.MODE_PRIVATE);
         String language = sharedPreferences.getString("My_Lang", "");
         if(language!=""){
